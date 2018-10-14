@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
 use App\Post;
+use App\Repositories\Posts;
 // Use Carbon\Carbon;
 
 class PostController extends Controller
@@ -12,12 +13,13 @@ class PostController extends Controller
     public function __construct(){
         $this->middleware('auth')->except(['index','show']);
     }
-    public function index(){
+    public function index(Posts $posts){
         // $posts = Post::latest()->get();
         // $posts = Post::latest();
-        $posts = Post::latest()
-            ->filter(request(['month','year']))
-            ->get();
+        $posts = $posts->all();
+        // $posts = Post::latest()
+        //     ->filter(request(['month','year']))
+        //     ->get();
 
         // if ($month = request('month')) {
         //     $posts->whereMonth('created_at',Carbon::parse($month)->month);
