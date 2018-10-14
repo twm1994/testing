@@ -14,6 +14,7 @@ class PostController extends Controller
     }
     public function index(){
         // $posts = Post::latest()->get();
+        // $posts = Post::latest();
         $posts = Post::latest()
             ->filter(request(['month','year']))
             ->get();
@@ -28,13 +29,16 @@ class PostController extends Controller
 
         // $posts = $posts->get();
 
-        $archives = Post::selectRaw('year(created_at) as year, monthname(created_at) as month, count(*) published')
-            ->groupBy('year','month')
-            ->orderByRaw('min(created_at) desc')
-            ->get()
-            ->toArray();
+        // $archives = Post::archives();
+
+        // $archives = Post::selectRaw('year(created_at) as year, monthname(created_at) as month, count(*) published')
+        //     ->groupBy('year','month')
+        //     ->orderByRaw('min(created_at) desc')
+        //     ->get()
+        //     ->toArray();
         // return $archives;
-        return view('blogs.index',compact('posts', 'archives'));
+        // return view('blogs.index',compact('posts', 'archives'));
+        return view('blogs.index',compact('posts'));
     }
     // public function show($id){
     //     $post = Post::find($id);
