@@ -26,7 +26,7 @@ class RegistrationController extends Controller
             'password' => bcrypt(request('password'))
         ]);
         auth()->login($user);
-        \Mail::to($user)->send(new Welcome);
+        \Mail::to($user)->send(new Welcome($user));
         return redirect()->home();
     }
 }
