@@ -10,6 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+App::singleton('App\Billing\Stripe', function(){
+  return new \App\Billing\Stripe(config('services.stripe.secret'));
+});
+
+// App::bind('App\Billing\Stripe', function(){
+//   return new \App\Billing\Stripe(config('services.stripe.secret'));
+// });
+
+// $stripe = App::make('App\Billing\Stripe');
+// $stripe = resolve('App\Billing\Stripe');
+$stripe = app('App\Billing\Stripe');
+
+dd($stripe);
+
 Route::get('/', 'PostController@index')->name('home');
 // Route::get('/home', 'PostController@index');
 Route::get('/posts', 'PostController@index');
@@ -24,4 +39,3 @@ Route::post('/posts', 'PostController@store');
 Route::post('/posts/{post}/comments', 'CommentController@store');
 Route::post('/register', 'RegistrationController@store');
 Route::post('/login', 'SessionController@store');
-Route::get('/hh', 'PostController@hh');

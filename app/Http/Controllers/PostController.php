@@ -52,9 +52,6 @@ class PostController extends Controller
     public function create(){
         return view('blogs.create');
     }
-    public function hh(){
-        dd(Post::all());
-    }
     public function store(){
         // dd(request()->all());
         // dd(request(['title','body']));
