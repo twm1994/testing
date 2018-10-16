@@ -20,7 +20,11 @@
 
     <div class="container">
       @include('layouts.nav')
-
+      @if ($flash=session('message'))
+      <div class="alert-success alert" role="alert">
+        {{$flash}}
+      </div>
+      @endif
       @yield('features')
     </div>
 
